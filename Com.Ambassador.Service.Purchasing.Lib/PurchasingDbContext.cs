@@ -34,6 +34,12 @@ using Com.Ambassador.Service.Purchasing.Lib.Models.BudgetCashflowWorstCaseModel;
 using Com.Ambassador.Service.Purchasing.Lib.Models.GarmentDispositionPurchaseModel;
 using Com.Ambassador.Service.Purchasing.Lib.Models.GarmentClosingDateModels;
 using Com.Ambassador.Service.Purchasing.Lib.Models.GarmentUenUrnChangeDateHistory;
+//--------------
+using Com.Ambassador.Service.Purchasing.Lib.Models.GarmentSubconDeliveryOrderModel;
+using Com.Ambassador.Service.Purchasing.Lib.Models.GarmentSubcon.GarmentSubconUnitReceiptNoteModel;
+using Com.Ambassador.Service.Purchasing.Lib.Models.GarmentSubcon.GarmentUnitDeliveryOrderModel;
+using Com.Ambassador.Service.Purchasing.Lib.Models.GarmentSubcon.GarmentUnitExpenditureNoteModel;
+//imp baris d atas
 //using Com.Ambassador.Service.Purchasing.Lib.Models.ImportValueModel;
 
 namespace Com.Ambassador.Service.Purchasing.Lib
@@ -150,6 +156,20 @@ namespace Com.Ambassador.Service.Purchasing.Lib
 
         //public DbSet<ImportValue> ImportValues { get; set; }
 
+        //subcon
+        public DbSet<GarmentSubconDeliveryOrder> GarmentSubconDeliveryOrders { get; set; }
+        public DbSet<GarmentSubconDeliveryOrderItem> GarmentSubconDeliveryOrderItems { get; set; }
+        public DbSet<GarmentSubconUnitReceiptNote> GarmentSubconUnitReceiptNotes { get; set; }
+        public DbSet<GarmentSubconUnitReceiptNoteItem> GarmentSubconUnitReceiptNoteItems { get; set; }
+        public DbSet<GarmentSubconUnitDeliveryOrder> GarmentSubconUnitDeliveryOrders { get; set; }
+        public DbSet<GarmentSubconUnitDeliveryOrderItem> GarmentSubconUnitDeliveryOrderItems { get; set; }
+        public DbSet<GarmentSubconUnitExpenditureNote> GarmentSubconUnitExpenditureNotes { get; set; }
+        public DbSet<GarmentSubconUnitExpenditureNoteItem> GarmentSubconUnitExpenditureNoteItems { get; set; }
+
+
+        //ini hrs d cek k tblny, kl gk ada, hrs di create migration
+
+
         public DbSet<GarmentClosingDate> ClosingDate { get; set; }
 
 
@@ -208,6 +228,27 @@ namespace Com.Ambassador.Service.Purchasing.Lib
                 .HasIndex(i => i.CorrectionNo)
                 .IsUnique()
                 .HasFilter("[IsDeleted]=(0) AND [CreatedUtc]>CONVERT([datetime2],'2019-10-01 00:00:00.0000000')");
+
+            //Subcon
+            modelBuilder.Entity<GarmentSubconDeliveryOrder>()
+                .HasIndex(i => i.DONo)
+                .IsUnique()
+                .HasFilter("[IsDeleted]=(0) AND [CreatedUtc]>CONVERT([datetime2],'2020-02-01 00:00:00.0000000')");
+
+            modelBuilder.Entity<GarmentSubconUnitReceiptNote>()
+                .HasIndex(i => i.URNNo)
+                .IsUnique()
+                .HasFilter("[IsDeleted]=(0) AND [CreatedUtc]>CONVERT([datetime2],'2020-02-01 00:00:00.0000000')");
+
+            modelBuilder.Entity<GarmentSubconUnitDeliveryOrder>()
+                .HasIndex(i => i.UnitDONo)
+                .IsUnique()
+                .HasFilter("[IsDeleted]=(0) AND [CreatedUtc]>CONVERT([datetime2],'2020-02-01 00:00:00.0000000')");
+
+            modelBuilder.Entity<GarmentSubconUnitExpenditureNote>()
+                .HasIndex(i => i.UENNo)
+                .IsUnique()
+                .HasFilter("[IsDeleted]=(0) AND [CreatedUtc]>CONVERT([datetime2],'2020-02-01 00:00:00.0000000')");
 
             #region Purchasing
 

@@ -79,7 +79,13 @@ using Com.Ambassador.Service.Purchasing.Lib.Facades.GarmentDispositionPurchaseFa
 using Com.Ambassador.Service.Purchasing.Lib.Facades.GarmentDispositionPaymentReport;
 using Microsoft.ApplicationInsights.AspNetCore;
 using Com.Ambassador.Service.Purchasing.Lib.Facades.GarmentClosingDateFacades;
-
+//subcon
+using Com.Ambassador.Service.Purchasing.Lib.Facades.GarmentSubconDeliveryOrderFacades;
+using Com.Ambassador.Service.Purchasing.Lib.Interfaces.GarmentSubcon;
+using Com.Ambassador.Service.Purchasing.Lib.Facades.GarmentSubcon.GarmentSubconUnitReceiptNoteFacades;
+using Com.Ambassador.Service.Purchasing.Lib.Facades.GarmentSubcon.GarmentSubconUnitDeliveryOrderFacades;
+using Com.Ambassador.Service.Purchasing.Lib.Facades.GarmentSubcon.GarmentSubconUnitExpenditureNoteFacade;
+//--------
 namespace Com.Ambassador.Service.Purchasing.WebApi
 {
     public class Startup
@@ -221,7 +227,12 @@ namespace Com.Ambassador.Service.Purchasing.WebApi
                 .AddTransient<IGarmentClosingDateFacade, GarmentClosingDateFacade>()
                 .AddTransient<IMonitoringFlowProductFacade, MonitoringFlowProductFacade>()
                 .AddTransient<IBeacukaiNoFeature, BeacukaiNoFeature>()
-                .AddTransient<IRealizationBOMFacade, RealizationBOMFacade>();
+                .AddTransient<IRealizationBOMFacade, RealizationBOMFacade>()
+            //subcon
+                .AddTransient<IGarmentSubconDeliveryOrderFacades, GarmentSubconDeliveryOrderFacade>()
+                .AddTransient<IGarmentSubconUnitReceiptNoteFacade, GarmentSubconUnitReceiptNoteFacade>()
+                .AddTransient<IGarmentSubconUnitDeliveryOrderFacade, GarmentSubconUnitDeliveryOrderFacades>()
+                .AddTransient<IGarmentSubconUnitExpenditureNoteFacade, GarmentSubconUnitExpenditureNoteFacade>();
 
         }
 
